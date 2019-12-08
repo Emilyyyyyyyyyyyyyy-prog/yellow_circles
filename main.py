@@ -11,7 +11,6 @@ class YellowCircle(QWidget):
         super().__init__()
         uic.loadUi('UI.ui', self)
         self.pushButton.clicked.connect(self.run)
-        self.flag = False
         self.setGeometry(300, 300, 400, 400)
         self.setWindowTitle('Окружность')
 
@@ -22,11 +21,17 @@ class YellowCircle(QWidget):
         self.setPalette(palette)
 
         self.r = randint(10, 100)
+        self.color1 = randint(0, 255)
+        self.color2 = randint(0, 255)
+        self.color3 = randint(0, 255)
 
         self.show()
 
     def run(self):
-        self.r = randint(10, 200)
+        self.r = randint(10, 100)
+        self.color1 = randint(0, 255)
+        self.color2 = randint(0, 255)
+        self.color3 = randint(0, 255)
 
     def paintEvent(self, event):
         qp = QPainter()
@@ -35,7 +40,7 @@ class YellowCircle(QWidget):
         qp.end()
 
     def drawCircle(self, qp):
-        qp.setPen(QColor(255, 255, 0))
+        qp.setPen(QColor(self.color1, self.color2, self.color3))
         r = self.r
         qp.drawEllipse(200 - r / 2, 200 - r / 2, r, r)
         self.update()
